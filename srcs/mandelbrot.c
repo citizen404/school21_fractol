@@ -1,11 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   mandelbrot.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lconchit <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/07/04 23:57:07 by lconchit          #+#    #+#             */
+/*   Updated: 2020/07/05 00:07:44 by lconchit         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
 
-int			check_mandelbrot(t_fr *fr)
+int					check_mandelbrot(t_fr *fr)
 {
-	int		n;
-	double		a;
-	double		b;
-	double		temp;
+	int				n;
+	double			a;
+	double			b;
+	double			temp;
 
 	n = 0;
 	a = fr->re_c;
@@ -20,17 +32,17 @@ int			check_mandelbrot(t_fr *fr)
 	return (n);
 }
 
-void			draw_mandelbrot(t_fr *fr)
+void				draw_mandelbrot(t_fr *fr)
 {
 	unsigned int	color;
-	int		x;
-	int		y;
+	int				x;
+	int				y;
 
 	x = 0;
 	while (x < WIN_WIDTH)
-	{	
+	{
 		y = 0;
-		fr->re_c = map(x, 0 , WIN_WIDTH, fr->x_min, fr->x_max);
+		fr->re_c = map(x, 0, WIN_WIDTH, fr->x_min, fr->x_max);
 		while (y < WIN_HEIGHT)
 		{
 			fr->im_c = map(y, 0, WIN_HEIGHT, fr->y_min, fr->y_max);
@@ -44,5 +56,5 @@ void			draw_mandelbrot(t_fr *fr)
 		}
 		x++;
 	}
-return;
+	return ;
 }
