@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "fractol.h"
-#include <stdio.h>
 
 void	fractol_exit(t_fr *fr)
 {
@@ -29,18 +28,16 @@ void	zoom_in(t_fr *fr, int x, int y)
 
 	if (x > 0 && y > 0)
 	{
-		x_n = map(x, 0, WIN_WIDTH, fr->x_min, fr->x_max); 
+		x_n = map(x, 0, WIN_WIDTH, fr->x_min, fr->x_max);
 		y_n = map(y, 0, WIN_HEIGHT, fr->y_min, fr->y_max);
-		fr->scale -= 0.005;///= K_DEEP;
+		fr->scale -= K_DEEP;
 		fr->x_prev = x_n - x_n * fr->scale;
 		fr->y_prev = y_n - y_n * fr->scale;
 		fr->x_min = fr->x_min * fr->scale + fr->x_prev;
 		fr->x_max = fr->x_max * fr->scale + fr->x_prev;
 		fr->y_min = fr->y_min * fr->scale + fr->y_prev;
 		fr->y_max = fr->y_max * fr->scale + fr->y_prev;
-		fr->n += 2;//*= K_DEEP;
-		printf("%d\n", fr->n);
-		printf("%F\n", fr->x_min);
+		fr->n += 2;
 	}
 }
 
@@ -51,19 +48,16 @@ void	zoom_out(t_fr *fr, int x, int y)
 
 	if (fr->scale < 1)
 	{
-		printf("%s\n", "----");
 		x_n = map(x, 0, WIN_WIDTH, fr->x_min, fr->x_max);
 		y_n = map(y, 0, WIN_HEIGHT, fr->y_min, fr->y_max);
-		fr->scale += 0.005;//*= K_DEEP;// 0.04;
-		fr->x_prev = x_n - x_n / (double)fr->scale;
-		fr->y_prev = y_n - y_n / (double)fr->scale;
-		fr->x_min = fr->x_min / (double)fr->scale + fr->x_prev;
-		fr->x_max = fr->x_max / (double)fr->scale + fr->x_prev;
-		fr->y_min = fr->y_min / (double)fr->scale + fr->y_prev;
-		fr->y_max = fr->y_max / (double)fr->scale + fr->y_prev;
-		fr->n -= 2;///= K_DEEP;
-	//	printf ("%f\n", fr->scale);
-		printf ("%F\n", fr->x_min);
+		fr->x_prev = x_n - x_n / fr->scale;
+		fr->y_prev = y_n - y_n / fr->scale;
+		fr->x_min = fr->x_min / fr->scale + fr->x_prev;
+		fr->x_max = fr->x_max / fr->scale + fr->x_prev;
+		fr->y_min = fr->y_min / fr->scale + fr->y_prev;
+		fr->y_max = fr->y_max / fr->scale + fr->y_prev;
+		fr->scale += K_DEEP;
+		fr->n -= 2;
 	}
 }
 
@@ -100,7 +94,7 @@ int	key_hook(int key, t_fr *fr)
 		fr->color_scheme = 3;
 	if (key == CS1 || key == CS2 || key == CS3)
 		redraw(fr);
-	return(1);
+	return (1);
 }
 
 int	mouse_hook(int button, int x, int y, t_fr *fr)
@@ -109,9 +103,9 @@ int	mouse_hook(int button, int x, int y, t_fr *fr)
 		zoom_in(fr, x, y);
 	if (button == 4)
 		zoom_out(fr, x, y);
-	mlx_clear_window(fr->mlx_ptr,fr->win_ptr); 
+	mlx_clear_window(fr->mlx_ptr,fr->win_ptr);
 	redraw(fr);
-	return(1);
+	return (1);
 }
 
 int	mouse_move(int x, int y, t_fr *fr)
@@ -124,5 +118,5 @@ int	mouse_move(int x, int y, t_fr *fr)
 		}
 	mlx_clear_window(fr->mlx_ptr, fr->win_ptr);
 	redraw(fr);
-	return(1);
+	return (1);
 }

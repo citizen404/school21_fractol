@@ -20,7 +20,7 @@
 # define DY 100
 
 # define MIN_ITERATIONS 40
-# define K_DEEP 1.04
+# define K_DEEP 0.005
 # define COLOR_BACKGR 0x000000
 
 # include <math.h>
@@ -28,8 +28,6 @@
 # include <fcntl.h>
 # include "../minilibx_macos/mlx.h"
 # include "../libft/libft.h"
-# include <stdio.h>
-# include <pthread.h>
 
 # define ESC 53
 # define RESET 15
