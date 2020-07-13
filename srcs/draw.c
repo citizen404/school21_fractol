@@ -6,7 +6,7 @@
 /*   By: lconchit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/04 23:57:40 by lconchit          #+#    #+#             */
-/*   Updated: 2020/07/04 23:57:43 by lconchit         ###   ########.fr       */
+/*   Updated: 2020/07/13 19:47:04 by lconchit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,20 +31,21 @@ void		draw_check(char *set_name)
 {
 	t_fr	*fr;
 
-	if (!(ft_strequ("Mandelbrot", set_name) || ft_strequ("Julia", set_name) || ft_strequ("Burningship", set_name)))
+	if (!(ft_strequ("Mandelbrot", set_name) || ft_strequ("Julia", set_name)
+				|| ft_strequ("Burningship", set_name)))
 		exit(p_error(2));
 	if (!(fr = (t_fr *)ft_memalloc(sizeof(t_fr))))
-		{
-			free(fr);
-			fr = NULL;
-			exit(p_error(1));
-		}
+	{
+		free(fr);
+		fr = NULL;
+		exit(p_error(1));
+	}
 	if (!(fractol_init(set_name, fr)))
-		{
-			free(fr);
-			fr = NULL;
-			exit(p_error(3));
-		}
+	{
+		free(fr);
+		fr = NULL;
+		exit(p_error(3));
+	}
 	redraw(fr);
 	mlx_key_hook(fr->win_ptr, key_hook, fr);
 	mlx_mouse_hook(fr->win_ptr, mouse_hook, fr);

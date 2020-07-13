@@ -6,13 +6,13 @@
 /*   By: lconchit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/04 23:58:12 by lconchit          #+#    #+#             */
-/*   Updated: 2020/07/04 23:58:14 by lconchit         ###   ########.fr       */
+/*   Updated: 2020/07/13 19:52:45 by lconchit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	fractol_exit(t_fr *fr)
+void		fractol_exit(t_fr *fr)
 {
 	mlx_destroy_image(fr->mlx_ptr, fr->img_ptr);
 	mlx_destroy_window(fr->mlx_ptr, fr->win_ptr);
@@ -21,10 +21,10 @@ void	fractol_exit(t_fr *fr)
 	exit(0);
 }
 
-void	zoom_in(t_fr *fr, int x, int y)
+void		zoom_in(t_fr *fr, int x, int y)
 {
-	double x_n;
-	double y_n;
+	double	x_n;
+	double	y_n;
 
 	if (x > 0 && y > 0)
 	{
@@ -41,10 +41,10 @@ void	zoom_in(t_fr *fr, int x, int y)
 	}
 }
 
-void	zoom_out(t_fr *fr, int x, int y)
+void		zoom_out(t_fr *fr, int x, int y)
 {
-	double x_n;
-	double y_n;
+	double	x_n;
+	double	y_n;
 
 	if (fr->scale < 1)
 	{
@@ -61,7 +61,7 @@ void	zoom_out(t_fr *fr, int x, int y)
 	}
 }
 
-void	reset(t_fr *fr)
+void		reset(t_fr *fr)
 {
 	fr->scale = 1.0;
 	fr->x_min = -2.0;
@@ -78,7 +78,7 @@ void	reset(t_fr *fr)
 	redraw(fr);
 }
 
-int	key_hook(int key, t_fr *fr)
+int			key_hook(int key, t_fr *fr)
 {
 	if (key == ESC)
 		fractol_exit(fr);
@@ -97,18 +97,18 @@ int	key_hook(int key, t_fr *fr)
 	return (1);
 }
 
-int	mouse_hook(int button, int x, int y, t_fr *fr)
-{ 
+int			mouse_hook(int button, int x, int y, t_fr *fr)
+{
 	if (button == 5)
 		zoom_in(fr, x, y);
 	if (button == 4)
 		zoom_out(fr, x, y);
-	mlx_clear_window(fr->mlx_ptr,fr->win_ptr);
+	mlx_clear_window(fr->mlx_ptr, fr->win_ptr);
 	redraw(fr);
 	return (1);
 }
 
-int	mouse_move(int x, int y, t_fr *fr)
+int			mouse_move(int x, int y, t_fr *fr)
 {
 	if (fr->fix)
 		if (x < WIN_WIDTH && y < WIN_HEIGHT)
