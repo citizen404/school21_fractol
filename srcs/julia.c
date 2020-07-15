@@ -42,11 +42,11 @@ void				draw_julia(t_fr *fr)
 	while (x < WIN_WIDTH)
 	{
 		y = 0;
-		fr->re_c = map(x, 0, WIN_WIDTH, fr->x_min, fr->x_max);
+		fr->re_c = map_fr(x, WIN_WIDTH, fr->x_min, fr->x_max);
 		while (y < WIN_HEIGHT)
 		{
-			fr->im_c = map(y, 0, WIN_HEIGHT, fr->y_min, fr->y_max);
-			color = map(check_julia(fr), 0, fr->n, 0, 255);
+			fr->im_c = map_fr(y, WIN_HEIGHT, fr->y_min, fr->y_max);
+			color = map_fr(check_julia(fr), fr->n, 0, 255);
 			fr->color_scheme != 0 ? color =
 				color_magic(fr->color_scheme * color, x, y) : 0;
 			fr->img_data[(x + y * WIN_WIDTH) * 4] = color;

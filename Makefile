@@ -23,6 +23,7 @@ SRCS_NAME = main.c\
 	julia.c\
 	burningship.c\
 	key_control.c\
+	mouse_control.c\
 	color.c\
 	error.c
 

@@ -12,8 +12,11 @@
 
 #include "fractol.h"
 
-double		map(int val, int s1, int f1, double s2, double f2)
+double		map_fr(int val, int f1, double s2, double f2)
 {
+	int 	s1;
+
+	s1 = 0;
 	return (((val - s1) / ((double)f1 - s1)) * (f2 - s2) + s2);
 }
 

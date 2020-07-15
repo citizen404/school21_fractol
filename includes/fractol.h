@@ -67,7 +67,7 @@ typedef struct		s_fr
 	int				endian;
 }					t_fr;
 
-double				map(int val, int s1, int f1, double s2, double f2);
+double				map_fr(int val, int f1, double s2, double f2);
 int					check_mandelbrot(t_fr *fr);
 int					check_julia(t_fr *fr);
 int					check_burningship(t_fr *fr);
