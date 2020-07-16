@@ -6,7 +6,7 @@
 /*   By: lconchit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/04 23:57:40 by lconchit          #+#    #+#             */
-/*   Updated: 2020/07/13 19:47:04 by lconchit         ###   ########.fr       */
+/*   Updated: 2020/07/16 15:37:47 by lconchit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 double		map_fr(int val, int f1, double s2, double f2)
 {
-	int 	s1;
+	int		s1;
 
 	s1 = 0;
 	return (((val - s1) / ((double)f1 - s1)) * (f2 - s2) + s2);
