@@ -6,7 +6,7 @@
 /*   By: lconchit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/04 23:57:40 by lconchit          #+#    #+#             */
-/*   Updated: 2020/07/16 15:37:47 by lconchit         ###   ########.fr       */
+/*   Updated: 2020/07/20 18:01:04 by lconchit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,12 @@ void		redraw(t_fr *fr)
 	fr->set == 2 ? draw_julia(fr) : 1;
 	fr->set == 3 ? draw_burningship(fr) : 1;
 	i = mlx_put_image_to_window(fr->mlx_ptr, fr->win_ptr, fr->img_ptr, 0, 0);
+}
+
+int			close_end(void *param)
+{
+	(void)param;
+	exit(0);
 }
 
 void		draw_check(char *set_name)
@@ -53,5 +59,6 @@ void		draw_check(char *set_name)
 	mlx_key_hook(fr->win_ptr, key_hook, fr);
 	mlx_mouse_hook(fr->win_ptr, mouse_hook, fr);
 	mlx_hook(fr->win_ptr, 6, 1L << 6, mouse_move, fr);
+	mlx_hook(fr->win_ptr, 17, 0, close_end, fr);
 	mlx_loop(fr->mlx_ptr);
 }

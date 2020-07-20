@@ -6,7 +6,7 @@
 #    By: lconchit <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/04 23:53:09 by lconchit          #+#    #+#              #
-#    Updated: 2020/07/04 23:53:26 by lconchit         ###   ########.fr        #
+#    Updated: 2020/07/16 16:05:22 by lconchit         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ OBJS = $(addprefix $(OBJS_DIR),$(OBJS_NAME))
 # includes
 INCLUDES_FR_DIR = ./includes/
 INCLUDES_FR_NAME = fractol.h
+INCLUDE = $(INCLUDES_FR_DIR)$(INCLUDES_FR_NAME)
 
 # libft
 LIBFT_DIR = ./libft/
@@ -52,12 +53,12 @@ MLX_FLAGS = -lmlx -lm -L$(MLX_DIR) -framework OpenGL -framework AppKit
 
 all: $(NAME)
 
-$(NAME): $(OBJS) $(LIBFT_DIR) $(MLX_DIR) $(INCLUDES_FR_DIR)
+$(NAME): $(OBJS) $(LIBFT_DIR) $(MLX_DIR) $(INCLUDE)
 	@make -C $(MLX_DIR)
 	@make -C $(LIBFT_DIR)
 	$(CC) $(FLAGS) $(MLX_FLAGS) $(LIBFT_FLAGS) -I$(INCLUDES_FR_DIR) -I$(LIBFT_DIR) -I$(MLX_DIR) $(OBJS) -o $(NAME)
 
-$(OBJS_DIR)%.o: $(SRCS_DIR)%.c
+$(OBJS_DIR)%.o: $(SRCS_DIR)%.c $(INCLUDE)
 	@mkdir -p $(OBJS_DIR)
 	$(CC) $(FLAGS) -I $(MLX_DIR) -I $(LIBFT_DIR) -I $(INCLUDES_FR_DIR) -o $@ -c $<
 
@@ -69,4 +70,5 @@ clean:
 fclean:
 	@make -C $(LIBFT_DIR) fclean
 	@/bin/rm -f $(NAME)
+	@/bin/rm -rf $(OBJS_DIR)
 re: fclean all
